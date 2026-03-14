@@ -1,0 +1,12 @@
+# Maven Build-Ergebnisse
+target/
+
+# IntelliJ Projektdateien
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Betriebssystem-Spezifika
+.DS_Store
+Thumbs.db
