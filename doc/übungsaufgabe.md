@@ -1,22 +1,22 @@
-## Erstellen einer JavaFX-App mit Maven
+# Erstellen einer JavaFX-App mit Maven
 
-### Aufgabe
+## Aufgabe
 
 Implementieren Sie folgende Anforderungen in einer Java-Applikation.
 
-#### Funktional
+### Funktional
 
 Die App soll ein einfaches Fenster anzeigen, in dem sich ein Button befindet. Beim Betätigen desselben soll in einer
 Dialogbox eine Hallo Welt!-Meldung ausgegeben werden.
 
-#### Technisch
+### Technisch
 
 Nutzen Sie JavaFX als UI-Framework und verwenden Sie FXML für die Definition der Oberflächen. Das Java Platform Module
 System, welches offiziell Java Platform Module System (JPMS) genannt wird, soll nicht benutzt werden. Der Programmablauf
 soll über SLF4J mit Log4j2 als Implementierung protokolliert werden. Nutzen Sie Java 25 und Maven als Build-Tool. Das
 Projekt soll mithilfe von Git versioniert werden.
 
-### Lösungsskizze
+## Lösungsskizze
 
 1. Erstellen Sie ein neues Java-Maven-Projekt mit Git-Repository.
 2. Erstellen Sie eine `.gitignore`-Datei, die nur relevanten Quellcode berücksichtigt, und führen Sie einen
@@ -33,9 +33,9 @@ Projekt soll mithilfe von Git versioniert werden.
    ausführen.
 8. Mergen Sie den `development`-Branch in den `master`-Branch und squashen Sie die Commits.
 
-### Lösungsvorschlag
+## Lösungsvorschlag
 
-#### 1. Projekt erstellen
+### 1. Projekt erstellen
 
 Um das Projekt in IntelliJ mit Maven und Git zu initialisieren, erstellen Sie zunächst ein neues Java-Projekt. Stellen
 Sie dabei sicher, dass als Java-JDK Version 25 ausgewählt ist. Als Build-Tool wählen Sie Maven. Aktivieren Sie außerdem
@@ -45,7 +45,7 @@ Stellen Sie sicher, dass die richtigen Maven-Koordinaten definiert sind. Klappen
 Der Projektname wird direkt in die Artifact-ID abgebildet: Nennen Sie es `exercise_result_of_<ihr_name>`. Als Group-ID
 können Sie `ATDIT_2026` nutzen.
 
-#### 2. .gitignore konfigurieren und Initial-Commit
+### 2. .gitignore konfigurieren und Initial-Commit
 
 Nicht alle Dateien müssen versioniert werden; zum Beispiel gehören IDE-spezifische Konfigurationen oder auch
 Build-Ergebnisse nicht ins Repository. Der Quelltext und die Ressourcen hingegen schon. Um ein sauberes Repository zu
@@ -79,7 +79,7 @@ Datei, dann „Add to VCS“; alternativ per Drag-and-Drop).
 Markieren Sie die komplette Changelist, geben Sie eine Commit-Nachricht ein (z. B. „Initial-Commit: Projektstruktur und
 .gitignore erstellt“) und führen Sie den Commit aus. Damit ist Ihr Projekt bereit.
 
-#### 3. Anlage eines Development-Branches
+### 3. Anlage eines Development-Branches
 
 Nachdem das Projekt initialisiert und der erste Commit im `master`-Branch erfolgt ist, erstellen Sie nun einen neuen
 Branch mit dem Namen `development`. Dieser dient als zentraler Arbeitszweig für alle weiteren Entwicklungen, um den
@@ -95,7 +95,7 @@ Ab diesem Moment führen Sie nach jedem erfolgreich abgeschlossenen Schritt eine
 Historie Ihrer Änderungen und können, falls nötig, zu einem früheren Status des Projekts zurückkehren. Stellen Sie
 sicher, dass Ihre Commit-Nachrichten kurz und präzise den jeweiligen Arbeitsschritt beschreiben.
 
-#### 4. Abhängigkeiten einfügen
+### 4. Abhängigkeiten einfügen
 
 Das Projekt soll auf JavaFX laufen und eine Protokollierung über SLF4J mit Log4J2 realisieren. Dafür sind externe
 Bibliotheken nötig:
@@ -153,7 +153,7 @@ Maven-View).
 Schließen Sie den Schritt ab, indem Sie die Änderungen mit einer passenden Commit-Nachricht committen, wie etwa: „adding
 dependencies for javafx, slf4j, log4j2“.
 
-#### 5. Die Benutzeroberfläche anlegen und mit Logik versehen
+### 5. Die Benutzeroberfläche anlegen und mit Logik versehen
 
 Erstellen Sie im Verzeichnis `src/main/java` ein passendes Package (z. B. `atdit_2026.controller`) und darin eine neue
 Klasse `Controller.java`. Diese Klasse implementiert später die UI-Interaktionen.
@@ -214,7 +214,7 @@ public class Controller {
 Nachdem Sie die Logik implementiert haben, führen Sie einen Commit durch, um den aktuellen Stand zu sichern. Eine
 passende Nachricht wäre: „Implementing controller logic and FXML view“
 
-#### 6. App-Klasse erstellen
+### 6. App-Klasse erstellen
 
 Die `App`-Klasse bildet den zentralen Einstiegspunkt Ihrer JavaFX-Anwendung. Sie muss die JavaFX-Klasse `Application`
 erweitern und die `start()`-Methode überschreiben, deren Aufgabe sein soll, die FXML-Datei zu laden und "in Szene zu
@@ -258,7 +258,7 @@ laden und als Inhalt der `Scene` zu setzen.
 Nachdem Sie die Klasse erstellt haben, führen Sie einen Commit durch, um Ihren Fortschritt zu sichern. Eine passende
 Nachricht wäre: „Adding App class to launch JavaFX application“.
 
-#### 7. JavaFX-Maven-Plugin konfigurieren
+### 7. JavaFX-Maven-Plugin konfigurieren
 
 Um das Programm konsistent in der Entwicklungsumgebung zu starten und zu verpacken, integrieren wir das
 `javafx-maven-plugin`. Dieses Plugin übernimmt die Konfiguration des Modul-Pfads.
@@ -290,7 +290,7 @@ starten. Alternativ lässt sich die App über die Konsole starten: `mvn javafx:r
 Sobald die Anwendung erfolgreich startet, führen Sie einen Commit durch: „Adding javafx-maven-plugin and verify
 execution“.
 
-#### 8. Merging und Squashing
+### 8. Merging und Squashing
 
 Die Entwicklung ist beendet, daher müssen die Codeänderungen noch in den Produktivcode (den `master`-Branch) eingemischt
 werden. Dabei ist das Ziel, eine saubere Historie im `master`-Branch zurückzulassen, jedoch ohne diese durch sämtliche
