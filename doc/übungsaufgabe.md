@@ -12,9 +12,8 @@ Dialogbox eine Hallo Welt!-Meldung ausgegeben werden.
 ### Technisch
 
 Nutzen Sie JavaFX als UI-Framework und verwenden Sie FXML für die Definition der Oberflächen. Das Java Platform Module
-System, welches offiziell Java Platform Module System (JPMS) genannt wird, soll nicht benutzt werden. Der Programmablauf
-soll über SLF4J mit Log4j2 als Implementierung protokolliert werden. Nutzen Sie Java 25 und Maven als Build-Tool. Das
-Projekt soll mithilfe von Git versioniert werden.
+System soll nicht benutzt werden. Der Programmablauf soll über SLF4J mit Log4j2 als Implementierung protokolliert
+werden. Nutzen Sie Java 25 und Maven als Build-Tool. Das Projekt soll mithilfe von Git versioniert werden.
 
 ## Lösungsskizze
 
@@ -48,7 +47,7 @@ können Sie `ATDIT_2026` nutzen.
 ### 2. .gitignore konfigurieren und Initial-Commit
 
 Nicht alle Dateien müssen versioniert werden; zum Beispiel gehören IDE-spezifische Konfigurationen oder auch
-Build-Ergebnisse nicht ins Repository. Der Quelltext und die Ressourcen hingegen schon. Um ein sauberes Repository zu
+Build-Ergebnisse nicht ins Repository, der Quelltext und die Ressourcen hingegen schon. Um ein sauberes Repository zu
 gewährleisten, erstellen Sie im Stammverzeichnis Ihres Projekts eine Datei namens `.gitignore`, falls diese nicht schon
 existiert. Diese stellt sicher, dass keine unnötigen Projektspezifika oder temporären Build-Dateien versioniert werden.
 
@@ -70,30 +69,31 @@ Thumbs.db
 ```
 
 Nachdem Sie die Datei erstellt haben, öffnen Sie das Commit-Tool-Fenster in IntelliJ. Zu diesem Zeitpunkt sollten Sie
-die relevanten Projektdateien (wie die `.gitignore`, die `pom.xml` und den `src`-Ordner) in der Changelist haben. Es ist
-möglich, dass bereits ignorierte Dateien dort gelistet sind. Wenn das der Fall ist, öffnen Sie das Terminal und setzen
-Sie das Repository mit dem Befehl `git reset` zurück. Danach sollte die Changelist zunächst leer sein. Fügen Sie
-anschließend die benötigten Dateien (`.gitignore`, `pom.xml`, `src/`) wieder der Changelist hinzu (Rechtsklick auf die
+die relevanten Projektdateien (`.gitignore`, `pom.xml`) in der Changelist haben. Es ist möglich, dass bereits
+ignorierte Dateien dort gelistet sind. Wenn das der Fall ist, öffnen Sie das Terminal und setzen Sie das Repository
+mit dem Befehl `git reset` zurück. Danach sollte die Changelist zunächst leer sein. Fügen Sie anschließend die
+einzig relevanten Dateien (abermals: `.gitignore`, `pom.xml`) wieder der Changelist hinzu (Rechtsklick auf die
 Datei, dann „Add to VCS“; alternativ per Drag-and-Drop).
 
-Markieren Sie die komplette Changelist, geben Sie eine Commit-Nachricht ein (z. B. „Initial-Commit: Projektstruktur und
-.gitignore erstellt“) und führen Sie den Commit aus. Damit ist Ihr Projekt bereit.
+Markieren Sie die komplette Changelist, geben Sie eine Commit-Nachricht ein (z. B. „Initial Commit") und führen Sie den
+Commit aus. Damit ist Ihr Projekt bereit.
 
 ### 3. Anlage eines Development-Branches
 
-Nachdem das Projekt initialisiert und der erste Commit im `master`-Branch erfolgt ist, erstellen Sie nun einen neuen
-Branch mit dem Namen `development`. Dieser dient als zentraler Arbeitszweig für alle weiteren Entwicklungen, um den
-`master`-Branch stabil zu halten.
+Erstellen Sie nun einen neuen Branch mit dem Namen `development`. Dieser dient als "Arbeitszweig" für ihre Änderungen.
+Durch das separate Erfassen auf dem neuen Branch wird der `master`-Branch stabil gehalten. Um das umzusetzen, gehen Sie
+wie folgt vor:
 
-Öffnen Sie die Git-View. Wählen Sie dann den aktuellen Branch (typischerweise sollte dieser bei Ihnen `master` heißen)
-per Rechtsklick aus und wählen Sie „New Branch from ...“.
+Öffnen Sie die Git-View. Wählen Sie dann den aktuellen Branch (typischerweise sollte dieser bei Ihnen `master` heißen,
+aber er kann auch einen ähnlichen Namen haben wie etwa `main`) per Rechtsklick aus und wählen Sie „New Branch from ...“.
 Benennen Sie den neuen Branch `development` und stellen Sie sicher, dass die Checkout-Option angewählt ist. Dadurch wird
-der Branch beim Erstellen direkt ausgecheckt; andernfalls müssten Sie den Checkout selbst vornehmen. Erstellen Sie den
-Branch anschließend über „Create“.
+der Branch beim Erstellen direkt ausgecheckt; andernfalls müssten Sie den Checkout selbst vornehmen, da sonst alle
+Änderungen weiterhin in den `master`-Branch committet werden. Erstellen Sie den Branch anschließend über „Create“.
 
-Ab diesem Moment führen Sie nach jedem erfolgreich abgeschlossenen Schritt einen Commit durch. Damit sichern Sie die
-Historie Ihrer Änderungen und können, falls nötig, zu einem früheren Status des Projekts zurückkehren. Stellen Sie
-sicher, dass Ihre Commit-Nachrichten kurz und präzise den jeweiligen Arbeitsschritt beschreiben.
+Ab diesem Moment führen Sie nach jedem erfolgreich abgeschlossenen Schritt einen Commit durch. Damit sichern Sie eine
+historische Nachvollziehbarkeit Ihrer Änderungen und können, falls nötig, zu einem früheren Status des Projekts
+zurückkehren. Stellen Sie sicher, dass Ihre Commit-Nachrichten kurz und präzise den jeweiligen Arbeitsschritt
+beschreiben.
 
 ### 4. Abhängigkeiten einfügen
 
@@ -179,9 +179,10 @@ definiert. Implementieren Sie die Oberfläche wie folgt:
 ```
 
 Die Grundlage der View (Root) ist eine `VBox`, die Objekte vertikal anordnet. Das Attribut `fx:controller` verbindet
-einen Controller mit der View. Dies ist notwendig, damit der Controller später aufgefunden und
+einen Controller (bzw. "den" `Controller`) mit der View. Dies ist notwendig, damit der Controller später aufgefunden und
 instanziiert werden kann. Die View enthält einen Button mit der Aufschrift „Say Hello!“ und bindet das Action-Event an
-die Methode `handleButtonClick()` des angebundenen Controllers.
+die Methode `handleButtonClick()` des angebundenen Controllers. Dadurch wird bei jedem Klick auf den Butten eben jene
+Methode aufgerufen.
 
 Realisieren Sie nun die funktionale Anforderung im Controller, indem Sie die Methode `handleButtonClick()`
 implementieren. Ein Dialog soll eine „Hallo-Welt“-Nachricht ausgeben. Vergessen Sie dabei die Protokollierung nicht (zum
@@ -202,7 +203,6 @@ public class Controller {
   public void handleButtonClick( ) {
     logger.info( "Button wurde geklickt." );
 
-    // Erstellen und Anzeigen der Dialogbox
     Alert alert = new Alert( Alert.AlertType.INFORMATION );
     alert.setTitle( "Begrüßung" );
     alert.setContentText( "Hallo Welt!" );
@@ -260,8 +260,8 @@ Nachricht wäre: „Adding App class to launch JavaFX application“.
 
 ### 7. JavaFX-Maven-Plugin konfigurieren
 
-Um das Programm konsistent in der Entwicklungsumgebung zu starten und zu verpacken, integrieren wir das
-`javafx-maven-plugin`. Dieses Plugin übernimmt die Konfiguration des Modul-Pfads.
+Um das Programm konsistent in der Entwicklungsumgebung zu starten, integrieren wir das `javafx-maven-plugin`. Dieses
+Plugin übernimmt u.a. die Konfiguration des Modul-Pfads.
 
 Fügen Sie also den folgenden Block in Ihre `pom.xml` gleich unterhalb der `<dependencies>` ein:
 
@@ -298,12 +298,11 @@ Commits zu verunreinigen. Die Zwischencommits sollen zu einem logischen Commit z
 
 1. Begeben Sie sich in die Git-View und checken Sie den `master`-Branch aus. Sämtliche Änderungen, die Sie gemacht
    haben, sind jetzt "verschwunden", da der `master`-Branch auf dem Stand von vor Ihren Änderungen ist.
-
 2. Im Menü wählen Sie Git und dann Merge.
-
 3. Im folgenden Dialog stellen Sie sicher, dass der `development`-Branch ausgewählt ist. Zusätzlich wählen Sie die
    Modify-Option "Create a single commit for all merged changes --squash". Klicken Sie dann auf Merge.
 
-Im Ergebnis erhalten Sie alle Änderungen in Ihrer Changelist aufgeführt, diesmal aber im `master`-Branch. Committen Sie
-diese Änderungen, etwa mit der Commitnachricht "Merge development: Implement full JavaFX application with logging and
+Im Ergebnis erhalten Sie alle Änderungen, die Sie im Branch `development` vorgenommen haben, in Ihrer Changelist
+aufgeführt, diesmal aber im `master`-Branch. Der zugehörige Code ist auch "wieder aufgetaucht". Committen Sie diese
+Änderungen, etwa mit der Commitnachricht "Merge development: Implement full JavaFX application with logging and
 Maven plugin", um die Änderungen im `master`-Branch zu sichern.
